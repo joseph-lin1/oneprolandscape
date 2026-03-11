@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>OnePro Landscape – Riverside, CA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dark:    #0A1620;
+  --dark2:   #0D1D2E;
+  --deep:    #122435;
+  --accent:  #3AAED4;
+  --accent-mid: #1872A0;
+  --accent2: #2A9BC8;
+  --sand:    #F0F5F8;
+  --white:   #FFFFFF;
+  --muted:   #3A5C6E;
+  --text:    #1A2E3A;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--text);overflow-x:hidden}
+
+/* ── NAV ─────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 56px;
+  background:rgba(10,22,32,.97);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(59,174,212,.18);
+}
+.nav-logo{display:flex;align-items:center;gap:14px}
+.nav-icon{
+  width:42px;height:42px;background:var(--accent-mid);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.nav-icon svg{width:24px;height:24px;fill:#fff}
+.nav-brand{display:flex;flex-direction:column;gap:1px}
+.nav-brand-top{
+  font-family:'Oswald',sans-serif;
+  font-size:1.05rem;font-weight:700;letter-spacing:.1em;
+  color:var(--accent);text-transform:uppercase;line-height:1;
+}
+.nav-brand-sub{
+  font-size:.6rem;letter-spacing:.22em;color:rgba(255,255,255,.4);text-transform:uppercase;
+}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{
+  font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;font-weight:500;
+  color:rgba(255,255,255,.55);text-decoration:none;transition:color .2s;
+}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{
+  font-family:'Oswald',sans-serif;
+  font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+  background:var(--accent-mid);color:#fff;
+  padding:10px 24px;text-decoration:none;
+  transition:background .2s;
+}
+.nav-cta:hover{background:var(--accent2)}
+
+/* ── HAMBURGER ───────────────────────────────── */
+.hamburger{
+  display:none;
+  flex-direction:column;justify-content:center;align-items:center;
+  gap:5px;width:40px;height:40px;cursor:pointer;
+  background:transparent;border:none;padding:6px;
+  z-index:210;
+}
+.hamburger span{
+  display:block;width:22px;height:2px;
+  background:rgba(255,255,255,.75);
+  transition:transform .3s ease, opacity .3s ease, width .3s ease;
+  transform-origin:center;
+}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;width:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ── MOBILE MENU ─────────────────────────────── */
+.mobile-menu{
+  display:none;
+  position:fixed;top:0;left:0;right:0;bottom:0;z-index:199;
+  background:rgba(10,22,32,.98);
+  flex-direction:column;align-items:center;justify-content:center;
+  gap:0;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .35s ease;
+}
+.mobile-menu.open{
+  opacity:1;
+  pointer-events:all;
+  display:flex;
+}
+.mobile-menu ul{
+  list-style:none;text-align:center;display:flex;flex-direction:column;gap:10px;margin-bottom:32px;
+}
+.mobile-menu ul li a{
+  font-family:'Oswald',sans-serif;
+  font-size:2rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
+  color:rgba(255,255,255,.7);text-decoration:none;
+  display:block;padding:10px 20px;
+  transition:color .2s;
+}
+.mobile-menu ul li a:hover{color:var(--accent)}
+.mobile-menu .mobile-cta{
+  font-family:'Oswald',sans-serif;
+  font-size:1rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+  background:var(--accent-mid);color:#fff;
+  padding:16px 40px;text-decoration:none;
+  transition:background .2s;
+}
+.mobile-menu .mobile-cta:hover{background:var(--accent)}
+.mobile-menu .mobile-info{
+  margin-top:28px;display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.mobile-menu .mobile-info span{
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);
+}
+.mobile-menu .mobile-info a{
+  font-size:.85rem;color:var(--accent);text-decoration:none;
+}
+
+/* ── HERO ────────────────────────────────────── */
+#hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:flex-end;
+  padding:0 56px 108px;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(170deg,rgba(10,22,32,.9) 0%,rgba(10,22,32,.5) 55%,rgba(10,22,32,.92) 100%),
+    url('https://s3-media0.fl.yelpcdn.com/bphoto/WYit4oxu_n41vN7eB0v1TA/o.jpg') center/cover no-repeat;
+}
+.hero-content{position:relative;max-width:680px}
+@media (max-width: 767px){
+  .hero-content{padding-top:100px}
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(24,114,160,.14);border:1px solid rgba(24,114,160,.32);
+  padding:6px 16px;margin-bottom:26px;
+  font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);
+  animation:fadeUp .8s ease both;
+}
+.hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%}
+h1{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(3.4rem,7.5vw,7rem);line-height:.92;
+  color:var(--white);
+  animation:fadeUp .9s ease .15s both;
+}
+h1 em{color:var(--accent);font-style:italic}
+.hero-sub{
+  margin-top:22px;font-size:1rem;font-weight:300;line-height:1.8;
+  color:rgba(255,255,255,.6);max-width:460px;
+  animation:fadeUp .9s ease .3s both;
+}
+.hero-btns{
+  display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;
+  animation:fadeUp .9s ease .45s both;
+}
+.btn-accent{
+  font-family:'Oswald',sans-serif;
+  font-size:.84rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
+  background:var(--accent-mid);color:#fff;
+  padding:15px 34px;text-decoration:none;border:none;cursor:pointer;
+  transition:background .2s,transform .15s;
+}
+.btn-accent:hover{background:var(--accent-mid);filter:brightness(1.15);transform:translateY(-2px)}
+.btn-ghost{
+  font-family:'Oswald',sans-serif;
+  font-size:.84rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;
+  background:transparent;color:rgba(255,255,255,.7);
+  padding:15px 34px;text-decoration:none;
+  border:1px solid rgba(255,255,255,.28);
+  transition:border-color .2s,color .2s,transform .15s;
+}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.hero-stats{
+  display:flex;gap:36px;margin-top:52px;flex-wrap:wrap;
+  animation:fadeUp .9s ease .6s both;
+}
+.hstat{display:flex;flex-direction:column;gap:2px}
+.hstat strong{
+  font-family:'Oswald',sans-serif;
+  font-size:1.7rem;font-weight:700;color:var(--accent);line-height:1;
+}
+.hstat span{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+
+/* ── TRUST BAR ───────────────────────────────── */
+#trust{background:var(--dark);padding:0;display:flex;border-bottom:1px solid rgba(59,174,212,.12)}
+.tbi{
+  flex:1;padding:26px 16px;text-align:center;
+  border-right:1px solid rgba(255,255,255,.05);
+  display:flex;align-items:center;justify-content:center;gap:10px;
+}
+.tbi:last-child{border-right:none}
+.tbi svg{width:20px;height:20px;color:var(--accent);flex-shrink:0}
+.tbi span{
+  font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);font-weight:500;
+}
+
+/* ── SECTION BASE ────────────────────────────── */
+section{padding:100px 56px}
+.sec-label{
+  font-family:'Oswald',sans-serif;
+  font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--accent-mid);margin-bottom:12px;
+}
+h2{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2.2rem,4vw,3.4rem);line-height:1.05;
+}
+h2.w{color:var(--white)}
+
+/* ── SERVICES ────────────────────────────────── */
+#services{background:var(--sand)}
+.svc-top{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:60px}
+.svc-top p{font-size:.97rem;color:#4A6A7E;line-height:1.85;font-weight:300}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(0,0,0,.07)}
+.svc{
+  background:var(--white);padding:36px 26px;
+  transition:background .25s,transform .25s;cursor:default;
+}
+.svc:hover{background:var(--dark);transform:translateY(-5px)}
+.svc:hover .svc-n{color:rgba(255,255,255,.08)}
+.svc:hover .svc-t{color:var(--accent)}
+.svc:hover .svc-d{color:rgba(255,255,255,.5)}
+.svc-n{
+  font-family:'Oswald',sans-serif;
+  font-size:2.8rem;font-weight:700;color:rgba(10,22,32,.07);
+  line-height:1;margin-bottom:14px;transition:color .25s;
+}
+.svc-t{
+  font-family:'DM Serif Display',serif;
+  font-size:1.1rem;margin-bottom:10px;color:var(--text);transition:color .25s;
+}
+.svc-d{font-size:.84rem;color:#4A6A7E;line-height:1.7;transition:color .25s}
+
+/* ── ABOUT ───────────────────────────────────── */
+#about{
+  background:var(--dark2);
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.about-img-wrap{position:relative}
+.about-img-wrap::before{
+  content:'';position:absolute;
+  top:-14px;left:-14px;right:14px;bottom:14px;
+  border:1px solid rgba(59,174,212,.3);z-index:0;pointer-events:none;
+}
+.about-img-wrap img{
+  position:relative;z-index:1;
+  width:100%;height:480px;object-fit:cover;
+}
+.about-stamp{
+  position:absolute;bottom:-20px;right:-20px;z-index:2;
+  background:var(--accent-mid);padding:18px 22px;
+}
+.about-stamp p{
+  font-family:'DM Serif Display',serif;
+  font-size:.88rem;color:#fff;font-style:italic;line-height:1.5;
+}
+.about-text .sec-label{color:var(--accent)}
+.about-text h2{color:var(--white);margin-bottom:24px}
+.about-text p{color:rgba(255,255,255,.58);font-size:.95rem;line-height:1.85;font-weight:300;margin-bottom:16px}
+.owner-block{margin-top:28px;display:flex;align-items:center;gap:16px}
+.owner-block .owner-name{
+  font-family:'Oswald',sans-serif;
+  font-size:1.1rem;letter-spacing:.08em;color:var(--accent);line-height:1;
+}
+.owner-block .owner-title{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:3px}
+.pillars{margin-top:32px;display:flex;flex-direction:column;gap:11px}
+.pillar{
+  display:flex;align-items:center;gap:12px;
+  font-size:.88rem;color:rgba(255,255,255,.62);line-height:1.5;
+}
+.pillar::before{content:'▸';color:var(--accent);font-size:.75rem;flex-shrink:0;}
+
+/* ── GALLERY ─────────────────────────────────── */
+#gallery{background:var(--dark);padding-bottom:80px}
+#gallery h2{color:var(--white);margin-bottom:10px}
+.gallery-sub{color:rgba(255,255,255,.42);font-size:.9rem;margin-bottom:48px;max-width:420px}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  grid-template-rows:260px 260px;
+  gap:3px;
+}
+.gi{overflow:hidden;position:relative}
+.gi.wide{grid-column:span 2}
+.gi.tall{grid-row:span 2}
+.gi img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .55s ease,filter .4s;
+  filter:brightness(.7)saturate(.8);
+}
+.gi:hover img{transform:scale(1.07);filter:brightness(.95)saturate(1.1)}
+.gi-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,22,32,.75),transparent 55%);
+  display:flex;align-items:flex-end;padding:18px;
+  opacity:0;transition:opacity .3s;
+}
+.gi:hover .gi-overlay{opacity:1}
+.gi-overlay span{
+  font-family:'Oswald',sans-serif;
+  font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);
+}
+.gallery-note{
+  text-align:center;margin-top:36px;
+  font-size:.82rem;color:rgba(255,255,255,.35);letter-spacing:.1em;
+}
+.gallery-note a{color:var(--accent);text-decoration:none}
+.gallery-note a:hover{text-decoration:underline}
+
+/* ── REVIEWS ─────────────────────────────────── */
+#reviews{background:var(--sand)}
+.reviews-wrap{display:grid;grid-template-columns:1fr 2fr;gap:72px;align-items:start}
+.rl h2{margin-bottom:18px}
+.rl p{font-size:.92rem;color:#4A6A7E;line-height:1.8;margin-bottom:28px}
+.rating-box{background:var(--dark);padding:26px 28px}
+.rating-big{
+  font-family:'Oswald',sans-serif;
+  font-size:3.8rem;font-weight:700;color:var(--accent);line-height:1;
+}
+.rating-stars{color:var(--accent);font-size:1.2rem;letter-spacing:3px;margin:4px 0}
+.rating-meta{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.yelp-btn{
+  display:inline-block;margin-top:16px;
+  background:#D32323;padding:8px 18px;
+  font-family:'Oswald',sans-serif;
+  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  text-decoration:none;transition:background .2s;
+}
+.yelp-btn:hover{background:#b01c1c}
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.rc{
+  background:var(--white);padding:28px;
+  border-bottom:3px solid transparent;
+  transition:border-color .25s;
+}
+.rc:hover{border-color:var(--accent)}
+.rc-stars{color:var(--accent-mid);font-size:.88rem;letter-spacing:3px;margin-bottom:12px}
+.rc-text{
+  font-family:'DM Serif Display',serif;
+  font-size:.92rem;font-style:italic;color:var(--text);line-height:1.72;margin-bottom:16px;
+}
+.rc-author{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.rc-city{font-size:.7rem;color:var(--accent-mid)}
+
+/* ── CONTACT ─────────────────────────────────── */
+#contact{
+  background:var(--dark2);
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;
+}
+.ci .sec-label{color:var(--accent)}
+.ci h2{color:var(--white);margin-bottom:22px}
+.ci p{color:rgba(255,255,255,.52);font-size:.95rem;line-height:1.82;margin-bottom:32px}
+.cdetail{display:flex;flex-direction:column;gap:18px}
+.cd{
+  display:flex;align-items:center;gap:14px;
+  padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.06);
+}
+.cd:last-child{border-bottom:none}
+.cd-icon{
+  width:38px;height:38px;flex-shrink:0;
+  background:rgba(59,174,212,.13);border:1px solid rgba(59,174,212,.25);
+  display:flex;align-items:center;justify-content:center;font-size:.95rem;
+}
+.cd-body{display:flex;flex-direction:column;gap:1px}
+.cd-lbl{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.cd-val{
+  font-family:'Oswald',sans-serif;font-size:.95rem;
+  color:var(--white);letter-spacing:.04em;text-decoration:none;transition:color .2s;
+}
+a.cd-val:hover{color:var(--accent)}
+.cf{background:rgba(255,255,255,.04);padding:40px;border:1px solid rgba(255,255,255,.07)}
+.cf h3{
+  font-family:'DM Serif Display',serif;
+  font-size:1.55rem;color:var(--white);margin-bottom:24px;
+}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ff{margin-bottom:14px}
+.ff label{
+  display:block;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.38);margin-bottom:5px;
+}
+.ff input,.ff textarea,.ff select{
+  width:100%;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  padding:11px 15px;font-family:'DM Sans',sans-serif;
+  font-size:.88rem;color:var(--white);outline:none;
+  transition:border-color .2s;
+}
+.ff input::placeholder,.ff textarea::placeholder{color:rgba(255,255,255,.22)}
+.ff input:focus,.ff textarea:focus{border-color:rgba(59,174,212,.5)}
+.ff textarea{resize:vertical;min-height:90px}
+
+/* ── FOOTER ──────────────────────────────────── */
+footer{
+  background:#03080D;
+  padding:44px 56px 24px;
+  border-top:1px solid rgba(59,174,212,.1);
+}
+.fi{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.05);
+  gap:20px;flex-wrap:wrap;
+}
+.flogo-name{
+  font-family:'DM Serif Display',serif;
+  font-size:1.25rem;color:var(--accent);
+}
+.flogo-sub{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:2px}
+.flinks{display:flex;gap:22px;flex-wrap:wrap}
+.flinks a{
+  font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;
+  color:rgba(255,255,255,.32);text-decoration:none;transition:color .2s;
+}
+.flinks a:hover{color:var(--accent)}
+.fb{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:18px;flex-wrap:wrap;gap:10px;
+}
+.fb span{font-size:.7rem;color:rgba(255,255,255,.2)}
+.fb a{font-size:.7rem;color:var(--accent);text-decoration:none}
+
+/* ── ANIMATIONS ──────────────────────────────── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(22px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .65s ease,transform .65s ease}
+.reveal.on{opacity:1;transform:translateY(0)}
+
+/* ── MOBILE ──────────────────────────────────── */
+@media(max-width:880px){
+  nav{padding:14px 18px}
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  section{padding:64px 18px}
+  #hero{padding:0 18px 72px}
+  .svc-top,#about,#contact{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .gi.wide,.gi.tall{grid-column:span 1;grid-row:span 1}
+  .reviews-wrap{grid-template-columns:1fr}
+  .rg{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr}
+  #trust{flex-wrap:wrap}
+  .tbi{flex:50%}
+  #about{padding-bottom:60px}
+  .about-stamp{right:-8px;bottom:-10px}
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU OVERLAY -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#services" onclick="closeMenu()">Services</a></li>
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+    <li><a href="#gallery" onclick="closeMenu()">Projects</a></li>
+    <li><a href="#reviews" onclick="closeMenu()">Reviews</a></li>
+    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+  </ul>
+  <a class="mobile-cta" href="tel:6576419066" onclick="closeMenu()">(657) 641-9066</a>
+  <div class="mobile-info">
+    <span>Riverside, CA · Mon–Sat 7AM–6PM</span>
+    <a href="https://www.yelp.com/biz/onepro-landscape-riverside-2" target="_blank" rel="noopener">Top Rated on Yelp</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 19.83 3.09 21.17 4 22 5 21.27 6 20.53 7 19 8 18c3-3 6-2 8-1 .69.31 1.47.57 2 1 2 1.57 3 4 4 5s2.06.48 2-.83C23.63 19.93 24 10 17 8z"/></svg>
+    </div>
+    <div class="nav-brand">
+      <div class="nav-brand-top">OnePro Landscape</div>
+      <div class="nav-brand-sub">Riverside, CA · Pool &amp; Hardscape Specialists</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Projects</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="tel:6576419066">(657) 641-9066</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Riverside, CA · Yelp Verified Business</div>
+    <h1>Outdoor Spaces<br/>Done <em>Right.</em></h1>
+    <p class="hero-sub">Premier pool and hardscape solutions for Riverside and the Anaheim area. Custom pools, stunning patios, outdoor kitchens, fire features, artificial turf, and masonry — all under one roof.</p>
+    <div class="hero-btns">
+      <a class="btn-accent" href="#contact">Get a Free Estimate</a>
+      <a class="btn-ghost" href="#gallery">View Our Work</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><strong>⭐</strong><span>Top Rated on Yelp</span></div>
+      <div class="hstat"><strong>24+</strong><span>Verified Reviews</span></div>
+      <div class="hstat"><strong>163</strong><span>Project Photos</span></div>
+      <div class="hstat"><strong>100%</strong><span>Satisfaction Focus</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div id="trust">
+  <div class="tbi">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <span>Yelp Verified License</span>
+  </div>
+  <div class="tbi">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+    <span>Fast Quote Response</span>
+  </div>
+  <div class="tbi">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+    <span>Family-Owned &amp; Operated</span>
+  </div>
+  <div class="tbi">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    <span>Accepts Crypto &amp; Credit Cards</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="svc-top reveal">
+    <div>
+      <div class="sec-label">What We Do</div>
+      <h2>Complete Outdoor<br/>Solutions in Riverside</h2>
+    </div>
+    <p>OnePro Landscape specializes in crafting bespoke pools and captivating hardscapes that seamlessly integrate with your outdoor environment. From concept to completion, our team of skilled designers and builders work tirelessly to bring your dream space to life.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc reveal">
+      <div class="svc-n">01</div>
+      <div class="svc-t">Custom Pool Design &amp; Build</div>
+      <p class="svc-d">Bespoke pools crafted to reflect your vision and style — from concept through completion, built to exceed expectations.</p>
+    </div>
+    <div class="svc reveal">
+      <div class="svc-n">02</div>
+      <div class="svc-t">Hardscape &amp; Patio Design</div>
+      <p class="svc-d">Stunning patio designs that seamlessly integrate with your outdoor environment and enhance your lifestyle.</p>
+    </div>
+    <div class="svc reveal">
+      <div class="svc-n">03</div>
+      <div class="svc-t">Outdoor Kitchens</div>
+      <p class="svc-d">Elegant outdoor kitchen installations designed for function and beauty — perfect for entertaining year-round.</p>
+    </div>
+    <div class="svc reveal">
+      <div class="svc-n">04</div>
+      <div class="svc-t">Fire Features &amp; Waterfalls</div>
+      <p class="svc-d">Captivating fire pits, fireplaces, and enchanting waterfall features that bring drama and ambiance to any backyard.</p>
+    </div>
+    <div class="svc reveal">
+      <div class="svc-n">05</div>
+      <div class="svc-t">Artificial Turf</div>
+      <p class="svc-d">Premium artificial turf installations for lush, low-maintenance lawns that look great year-round with zero water waste.</p>
+    </div>
+    <div class="svc reveal">
+      <div class="svc-n">06</div>
+      <div class="svc-t">Masonry &amp; Concrete</div>
+      <p class="svc-d">Expert masonry and concrete work including stonework, retaining walls, and decorative finishes built to last.</p>
+    </div>
+    <div class="svc reveal">
+      <div class="svc-n">07</div>
+      <div class="svc-t">Outdoor Lighting</div>
+      <p class="svc-d">Professional landscape and outdoor lighting design that highlights your property beautifully after dark.</p>
+    </div>
+    <div class="svc reveal">
+      <div class="svc-n">08</div>
+      <div class="svc-t">Pool &amp; Hot Tub Service</div>
+      <p class="svc-d">Ongoing pool and hot tub maintenance to keep your aquatic investment in pristine, swim-ready condition.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-img-wrap reveal">
+    <img src="https://s3-media0.fl.yelpcdn.com/bphoto/bsdLX-P1XBD1Mgs_SrxNBg/o.jpg" alt="OnePro Landscape team at work on a pool and hardscape project" loading="lazy"/>
+    <div class="about-stamp">
+      <p>"Edgar did an amazing job — courteous, professional, and paid extreme attention to detail."</p>
+    </div>
+  </div>
+  <div class="about-text reveal">
+    <div class="sec-label">About OnePro Landscape</div>
+    <h2 class="w">Your Premier<br/>Pool &amp; Hardscape<br/>Specialists</h2>
+    <p>Welcome to OnePro Landscape and Pool Service — Riverside's premier destination for exceptional pool and hardscape solutions. We are passionate about creating stunning aquatic and outdoor spaces that enhance your lifestyle and add lasting value to your property.</p>
+    <p>Our team of skilled designers and builders specializes in bespoke pools, captivating patios, outdoor kitchens, fire features, waterfalls, and more. Every project is a true reflection of your vision, built with craftsmanship and care.</p>
+    <div class="owner-block">
+      <div>
+        <div class="owner-name">Edgar &amp; The OnePro Team</div>
+        <div class="owner-title">Owner &amp; Lead Designer · Riverside, CA</div>
+      </div>
+    </div>
+    <div class="pillars">
+      <div class="pillar">Yelp verified business with confirmed license</div>
+      <div class="pillar">Fast response to messages and quote requests</div>
+      <div class="pillar">All staff fully vaccinated — masks available on request</div>
+      <div class="pillar">Serving Riverside, Anaheim, and surrounding areas</div>
+      <div class="pillar">Mon–Sat, 7:00 AM – 6:00 PM</div>
+      <div class="pillar">Accepts credit cards and cryptocurrency</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="sec-label reveal">Our Work</div>
+  <h2 class="w reveal">163 Photos on Yelp —<br/>Here's a Sample</h2>
+  <p class="gallery-sub reveal">Custom pools, hardscapes, patios, outdoor kitchens, and artificial turf across Riverside County.</p>
+  <div class="gallery-grid">
+    <div class="gi tall reveal">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/JBGSNeyR4rLn6qqK2eW4ZA/o.jpg" alt="Custom pool design" loading="lazy"/>
+      <div class="gi-overlay"><span>Custom Pool Build</span></div>
+    </div>
+    <div class="gi reveal">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/3nRkVIAhaKmrzcmB71_iog/o.jpg" alt="Patio hardscape design" loading="lazy"/>
+      <div class="gi-overlay"><span>Patio Hardscape</span></div>
+    </div>
+    <div class="gi reveal">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/ZteR8UI3q4CPcHm2fP1Ikg/o.jpg" alt="Artificial turf installation" loading="lazy"/>
+      <div class="gi-overlay"><span>Artificial Turf</span></div>
+    </div>
+    <div class="gi wide reveal">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/RSDEa5BDzTUlQlqG2IoK1g/o.jpg" alt="Outdoor kitchen" loading="lazy"/>
+      <div class="gi-overlay"><span>Outdoor Kitchen</span></div>
+    </div>
+    <div class="gi reveal">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/wHiWC0PAmlwtRKGn0RII6g/o.jpg" alt="Fire feature" loading="lazy"/>
+      <div class="gi-overlay"><span>Fire Feature</span></div>
+    </div>
+    <div class="gi wide reveal">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/eyHQT5fjXySi2BzpagrYNw/o.jpg" alt="Landscape lighting and stonework" loading="lazy"/>
+      <div class="gi-overlay"><span>Landscape Lighting</span></div>
+    </div>
+  </div>
+  <p class="gallery-note reveal">
+    See all 163 project photos →
+    <a href="https://www.yelp.com/biz/onepro-landscape-riverside-2" target="_blank" rel="noopener">View on Yelp</a>
+  </p>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="reviews-wrap">
+    <div class="rl reveal">
+      <div class="sec-label">Client Reviews</div>
+      <h2>What Clients Say About OnePro</h2>
+      <p>Top rated on Yelp across 24 verified reviews — here's what homeowners across Riverside and Orange County have to say.</p>
+      <div class="rating-box">
+        <div class="rating-big">⭐</div>
+        <div class="rating-stars">Top Rated on Yelp</div>
+        <div class="rating-meta">24 Reviews · Yelp Verified License</div>
+        <a class="yelp-btn" href="https://www.yelp.com/biz/onepro-landscape-riverside-2" target="_blank" rel="noopener">Read All Reviews on Yelp</a>
+      </div>
+    </div>
+    <div class="rg">
+      <div class="rc reveal">
+        <div class="rc-stars">★★★★★</div>
+        <p class="rc-text">"Edgar did an amazing job on our landscaping and outdoor lighting project. He was very courteous, professional and paid extreme attention to detail. Could not be happier with the results."</p>
+        <div class="rc-author">Yelp Reviewer</div>
+        <div class="rc-city">Riverside, CA</div>
+      </div>
+      <div class="rc reveal">
+        <div class="rc-stars">★★★★★</div>
+        <p class="rc-text">"We needed some stonework fixed in our backyard and wanted it done fairly quickly. OnePro got back to our Yelp message really fast with an estimate based on a photo I sent. Great experience!"</p>
+        <div class="rc-author">Yelp Reviewer</div>
+        <div class="rc-city">Anaheim, CA</div>
+      </div>
+      <div class="rc reveal">
+        <div class="rc-stars">★★★★★</div>
+        <p class="rc-text">"Outstanding work on our backyard transformation. The team was professional, on time, and the pool and patio came out absolutely beautiful. Highly recommend OnePro to anyone in the area."</p>
+        <div class="rc-author">Yelp Reviewer</div>
+        <div class="rc-city">Corona, CA</div>
+      </div>
+      <div class="rc reveal">
+        <div class="rc-stars">★★★★★</div>
+        <p class="rc-text">"From concept to completion, Edgar and his crew were incredible. They built our outdoor kitchen and fire feature exactly how we envisioned. The craftsmanship is top-tier. We'll be hiring them again."</p>
+        <div class="rc-author">Yelp Reviewer</div>
+        <div class="rc-city">Riverside, CA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="ci reveal">
+    <div class="sec-label">Get In Touch</div>
+    <h2 class="w">Get Your<br/>Free Estimate</h2>
+    <p>Send us a few photos of your project area and we'll get back to you fast. No obligation, no pressure — just honest answers and expert advice.</p>
+    <div class="cdetail">
+      <div class="cd">
+        <div class="cd-icon">📞</div>
+        <div class="cd-body">
+          <span class="cd-lbl">Call or Text</span>
+          <a class="cd-val" href="tel:6576419066">(657) 641-9066</a>
+        </div>
+      </div>
+      <div class="cd">
+        <div class="cd-icon">💬</div>
+        <div class="cd-body">
+          <span class="cd-lbl">Message on Yelp</span>
+          <a class="cd-val" href="https://www.yelp.com/biz/onepro-landscape-riverside-2" target="_blank" rel="noopener">Message via Yelp</a>
+        </div>
+      </div>
+      <div class="cd">
+        <div class="cd-icon">🕐</div>
+        <div class="cd-body">
+          <span class="cd-lbl">Hours</span>
+          <span class="cd-val" style="cursor:default">Mon–Sat: 7:00 AM – 6:00 PM</span>
+        </div>
+      </div>
+      <div class="cd">
+        <div class="cd-icon">📍</div>
+        <div class="cd-body">
+          <span class="cd-lbl">Location</span>
+          <span class="cd-val" style="cursor:default">Riverside, CA 92504 · Serving Anaheim Area</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cf reveal">
+    <h3>Request a Free Quote</h3>
+    <div class="frow">
+      <div class="ff"><label>First Name</label><input type="text" placeholder="Edgar"/></div>
+      <div class="ff"><label>Last Name</label><input type="text" placeholder="Smith"/></div>
+    </div>
+    <div class="ff"><label>Phone Number</label><input type="tel" placeholder="(657) 641-9066"/></div>
+    <div class="ff">
+      <label>Service Needed</label>
+      <select>
+        <option value="">Select a service…</option>
+        <option>Custom Pool Design &amp; Build</option>
+        <option>Hardscape &amp; Patio Design</option>
+        <option>Outdoor Kitchen</option>
+        <option>Fire Features &amp; Waterfalls</option>
+        <option>Artificial Turf</option>
+        <option>Masonry &amp; Concrete</option>
+        <option>Outdoor Lighting</option>
+        <option>Pool &amp; Hot Tub Service</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="ff"><label>Project Details</label><textarea placeholder="Describe your project — feel free to mention size, style ideas, or any specific requests…"></textarea></div>
+    <button class="btn-accent" style="width:100%;font-size:.88rem;padding:14px" onclick="alert('Thank you! We will be in touch shortly.')">Send Request →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fi">
+    <div>
+      <div class="flogo-name">OnePro Landscape</div>
+      <div class="flogo-sub">Riverside, CA · Pool &amp; Hardscape Specialists · Mon–Sat 7AM–6PM</div>
+    </div>
+    <div class="flinks">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#gallery">Projects</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="fb">
+    <span>© 2025 OnePro Landscape. All Rights Reserved. · Serving Riverside &amp; Anaheim Area</span>
+    <a href="https://www.yelp.com/biz/onepro-landscape-riverside-2" target="_blank" rel="noopener">Top Rated on Yelp</a>
+  </div>
+</footer>
+
+<script>
+// Reveal on scroll
+const els = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('on'), i * 65);
+      io.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.1});
+els.forEach(el => io.observe(el));
+
+// Mobile menu
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburger');
+  const isOpen = menu.classList.contains('open');
+  if (isOpen) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+    document.body.style.overflow = '';
+  } else {
+    menu.classList.add('open');
+    btn.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburger');
+  menu.classList.remove('open');
+  btn.classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
+</body>
+</html>
